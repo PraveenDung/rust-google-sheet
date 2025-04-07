@@ -86,9 +86,9 @@ async fn read_google_sheet(
         //     filter_value
         // );
 
-        // ✅ Print & Store Header Row
+        // Print & Store Header Row
         let header = &values[0];
-        println!("📌 Header: {:?}", header);
+        println!(" Header: {:?}", header);
         for row in values.iter().skip(1) {
             let match_col1 = row.get(column_index1).map_or(false, |cell| cell.as_str() == Some(filter_value1));
             let match_col2 = row.get(column_index2).map_or(false, |cell| cell.as_str() == Some(filter_value2));
@@ -100,7 +100,7 @@ async fn read_google_sheet(
             }
         }
         println!("Total Matching Rows: {}", count);
-        // ✅ Save to JSON file
+        //  Save to JSON file
         let json_output = json!({
             "header": header,
             "filtered_data": filtered_data,
@@ -109,7 +109,7 @@ async fn read_google_sheet(
 
         let mut file = File::create("output.json")?;
         file.write_all(json_output.to_string().as_bytes())?;
-        println!("✅ Data saved to 'output.json'");
+        println!(" Data saved to 'output.json'");
     } else {
         println!("No data found!");
     }
@@ -145,7 +145,7 @@ async fn append_row_to_google_sheet(
         .json::<Value>()
         .await?;
 
-    println!("✅ Row added: {:#?}", response);
+    println!(" Row added: {:#?}", response);
     Ok(())
 }
 
@@ -224,10 +224,10 @@ async fn delete_row_from_google_sheet(
 async fn main() {
     match get_google_access_token().await {
         Ok(token) => {
-            println!("🔑 Token retrieved!");
+            println!(" Token retrieved!");
 
             let column_index1: usize = 1; // Column B (CHANNEL VLOOKUP)
-            let filter_value1 = "DEBENHAMS";
+            let filter_value1 = "AryfS";
 
             let column_index2: usize = 9; // Column J (Refunded)
             let filter_value2 = "FALSE"; 
@@ -239,8 +239,8 @@ async fn main() {
 
             // // Append a new row
             // let new_data = vec![
-            //     "SaveEfforts".to_string(),
-            //     "saveefforts@gmail.com".to_string(),
+            //     "afwe".to_string(),
+            //     "wefwe@gmail.com".to_string(),
             //     "192783568".to_string(),
             // ];
             // if let Err(e) = append_row_to_google_sheet(&token, new_data).await {
